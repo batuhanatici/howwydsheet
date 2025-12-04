@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="tr">
+<html lang="tr">
 
 <head>
     <meta charset="utf-8" />
@@ -29,19 +29,24 @@
                 toggle() {
                     this.on = !this.on;
                     localStorage.setItem('theme', this.on ? 'dark' : 'light');
-                    this.updateHtml();
-                },
-
-                updateHtml() {
-                    if (this.on) {
-                        document.documentElement.classList.add('dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                    }
                 },
 
                 init() {
-                    this.updateHtml();
+                    // Effect to sync class with state
+                    Alpine.effect(() => {
+                        if (this.on) {
+                            document.documentElement.classList.add('dark');
+                        } else {
+                            document.documentElement.classList.remove('dark');
+                        }
+                    });
+
+                    // Listen for system preference changes
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                        if (!('theme' in localStorage)) {
+                            this.on = e.matches;
+                        }
+                    });
                 }
             });
         });
@@ -104,7 +109,7 @@
 
                         <!-- Actions -->
                         <div class="flex items-center gap-3">
-                            <a href="https://github.com" target="_blank"
+                            <a href="https://github.com/batuhanatici/howwydsheet/" target="_blank"
                                 class="hidden sm:flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all hover:scale-105">
                                 <span class="material-symbols-outlined text-xl">code</span>
                             </a>
@@ -180,8 +185,8 @@
                                         <span class="material-symbols-outlined">rocket_launch</span>
                                         Hemen Başla
                                     </a>
-                                    <button
-                                        class="flex items-center justify-center gap-2 h-14 px-8 rounded-2xl bg-white dark:bg-white/10 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 text-lg font-bold hover:bg-slate-50 dark:hover:bg-white/20 transition-all hover:scale-105 w-full sm:w-auto">
+                                    <button @click="open('https://github.com/batuhanatici/howwydsheet/')"
+                                        class="flex cursor-pointer items-center justify-center gap-2 h-14 px-8 rounded-2xl bg-white dark:bg-white/10 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 text-lg font-bold hover:bg-slate-50 dark:hover:bg-white/20 transition-all hover:scale-105 w-full sm:w-auto">
                                         <span class="material-symbols-outlined">code</span>
                                         GitHub
                                     </button>
@@ -421,7 +426,7 @@
                                 <div>
                                     <h4 class="font-bold mb-4">Topluluk</h4>
                                     <ul class="space-y-2 text-slate-500 dark:text-slate-400">
-                                        <li><a href="https://github.com/batuhanatici"
+                                        <li><a href="https://github.com/batuhanatici/howwydsheet/"
                                                 class="hover:text-primary transition-colors">GitHub</a></li>
                                         <li><a href="#" class="hover:text-primary transition-colors">Discord</a></li>
                                         <li><a href="https://x.com/howwydtr"

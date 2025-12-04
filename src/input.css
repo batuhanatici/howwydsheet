@@ -6,16 +6,18 @@
   --color-primary: #845af6;
   --color-background-light: #f6f5f8;
   --color-background-dark: #151022;
-  
+
   --font-display: "Outfit", sans-serif;
-  
+
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
 }
 
+@variant dark (&:where(.dark, .dark *));
+
 @layer base {
   .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
   }
 
   /* Minimalist Scrollbar */

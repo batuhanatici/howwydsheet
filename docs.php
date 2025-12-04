@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="tr">
+<html lang="tr">
 
 <head>
     <meta charset="utf-8" />
@@ -31,19 +31,24 @@
                 toggle() {
                     this.on = !this.on;
                     localStorage.setItem('theme', this.on ? 'dark' : 'light');
-                    this.updateHtml();
-                },
-
-                updateHtml() {
-                    if (this.on) {
-                        document.documentElement.classList.add('dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                    }
                 },
 
                 init() {
-                    this.updateHtml();
+                    // Effect to sync class with state
+                    Alpine.effect(() => {
+                        if (this.on) {
+                            document.documentElement.classList.add('dark');
+                        } else {
+                            document.documentElement.classList.remove('dark');
+                        }
+                    });
+
+                    // Listen for system preference changes
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                        if (!('theme' in localStorage)) {
+                            this.on = e.matches;
+                        }
+                    });
                 }
             });
 
@@ -337,7 +342,7 @@
                 </label>
             </div>
             <div class="flex items-center gap-2">
-                <a href="https://github.com" target="_blank"
+                <a href="https://github.com/batuhanatici/howwydsheet/" target="_blank"
                     class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/10">
                     <span class="material-symbols-outlined !text-2xl"
                         style="font-variation-settings: 'wght' 300;">code</span>
