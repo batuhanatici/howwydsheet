@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="katman_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024">
+  <!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+        opacity: 1;
+      }
+
+      .st1 {
+        fill: #5d13aa;
+      }
+
+      .st2 {
+        fill: #8f56db;
+      }
+    </style>
+  </defs>
+  <path class="st1" d="M191.6,44.1h668c68,0,123.3,55.2,123.3,123.3v859.2H68.3V167.4c0-68,55.2-123.3,123.3-123.3Z"/>
+  <rect class="st2" x="378.7" y="75.8" width="266.6" height="26.6" rx="13.3" ry="13.3"/>
+  <path class="st0" d="M833.2,113l-208.7,90.5-2,389.3c0-58-47-105-105-105h-140.6V194.7l-115.9,50.9c-44,19.3-73,67.1-73,120.2v545.2h188.8v-325.1c6.6,50,49.3,88.6,101.1,88.6h144.1l-1.2,235.7h125.4c52.3,0,89.5-52.8,89.5-113.1l-2.6-684.1Z"/>
+</svg>

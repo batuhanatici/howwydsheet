@@ -1,0 +1,98 @@
+[x-cloak] { display: none !important; }
+
+.sheet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.sheet .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+}
+
+.sheet .contents {
+    position: relative;
+    width: 100%;
+    background-color: white;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.dark .sheet .contents {
+    background-color: #1e1a2e;
+    border-top: 1px solid #2c2839;
+}
+
+/* Fullscreen mode adjustments */
+.sheet.fullscreen .contents {
+    border-radius: 0;
+    height: 100%;
+}
+
+.sheet .controls {
+    width: 100%;
+    padding: 0.5rem 0;
+    cursor: grab;
+    flex-shrink: 0;
+}
+
+.sheet .controls:active {
+    cursor: grabbing;
+}
+
+.sheet .draggable-area {
+    width: 100%;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sheet .draggable-thumb {
+    width: 3rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background-color: #e2e8f0;
+}
+
+.dark .sheet .draggable-thumb {
+    background-color: #475569;
+}
+
+.sheet .body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    overscroll-behavior: contain;
+}
+
+/* Transitions */
+.sheet-enter-active,
+.sheet-leave-active {
+    transition: transform 0.3s ease-out;
+}
+
+.sheet-enter-from,
+.sheet-leave-to {
+    transform: translateY(100%);
+}
